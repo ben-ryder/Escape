@@ -1,8 +1,10 @@
 # Escape
 You are trapped. To escape you must collect all the keys and get to the exit while avoiding all enemy patrols. If they touch you, you're dead.  
-*The game also comes with a level editor, allowing you to create and play your own custom levels.*
+*The game also comes with a level editor, allowing you to create and play your own custom levels.*  
 
-## Instructions
+Requirments: Python (at least v3) and [pygame](https://www.pygame.org).
+
+## Instructions 
 Use the `arrow keys` or `wasd` to move around. When you move over a key, you automatically collect it. When all keys are collected the exit will turn from red to green, and you can go through. However if an enemy touches you at any point you die and fail the level, so make use of the safe points you find, they can't get you there.  
 There are 3 kinds of enemy:  
 **Patrols**  
