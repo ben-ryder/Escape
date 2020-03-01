@@ -10,7 +10,6 @@ import pygame_gui
 
 import project.data as data
 
-
 class LoadGame:
     """ Lets user select games from a list of files from paths.GamePath """
     def __init__(self, display):
@@ -51,9 +50,15 @@ class LoadGame:
             self.draw()
 
     def get_state(self):
+        print("loadgame.py, class=LoadGame")#added for unit test assignment
+        print("UNITTEST-Getting state: \"" + str(self.state) + "\"")#added for unit test assignment
+        print()#added for unit test assignment
         return self.state
 
     def get_game(self):
+        print("loadgame.py, class=LoadGame")#added for unit test assignment
+        print("UNITTEST-Getting game: \"" + str(self.game_reference) + "\"")#added for unit test assignment
+        print()#added for unit test assignment
         return self.game_reference
 
     def handle_events(self):
@@ -74,16 +79,28 @@ class LoadGame:
                 # else:
                 if not self.file_selector.check_clicked():
                     if self.back_button.check_clicked():
+                        print("loadgame.py, class=LoadGame")#added for unit test assignment
+                        print("UNITTEST-Back button clicked. Setting state to menu")#added for unit test assignment
+                        print()#added for unit test assignment
                         self.state = "menu"
 
                     elif self.page_back_button.check_clicked():
+                        print("loadgame.py, class=LoadGame")#added for unit test assignment
+                        print("UNITTEST-Page back button clicked")#added for unit test assignment
+                        print()#added for unit test assignment
                         self.file_selector.page_back()
 
                     elif self.page_forward_button.check_clicked():
+                        print("loadgame.py, class=LoadGame")#added for unit test assignment
+                        print("UNITTEST-Page back button clicked")#added for unit test assignment
+                        print()#added for unit test assignment
                         self.file_selector.page_forward()
 
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE or (event.key == pygame.K_F4 and event.mod == pygame.KMOD_ALT):
+                    print("loadgame.py, class=LoadGame")#added for unit test assignment
+                    print("UNITTEST-ESC key or ATL-F4 clicked, Exiting...")#added for unit test assignment
+                    print()#added for unit test assignment
                     self.state = "quit"
 
     def delete_game(self):
@@ -92,6 +109,9 @@ class LoadGame:
         self.reset_delete()
 
     def select_game(self, game_name):
+        print("loadgame.py, class=LoadGame")#added for unit test assignment
+        print("UNITTEST-Game: " + str(game_name) + " selected. quiting load game routine and starting game routine")#added for unit test assignment
+        print()#added for unit test assignment
         self.game_reference = game_name
         self.state = "game"  # effectively quits load game
 
@@ -160,12 +180,18 @@ class FileSelector:
             pass
 
     def page_forward(self):
+        print("loadgame.py, class=FileSelector")#added for unit test assignment
+        print("UNITTEST-Moving page forward")#added for unit test assignment
+        print()#added for unit test assignment
         if self.current_page < len(self.game_pages)-1:
             self.current_page += 1
         else:
             self.current_page = 0
 
     def page_back(self):
+        print("loadgame.py, class=FileSelector")#added for unit test assignment
+        print("UNITTEST-Moving page backward")#added for unit test assignment
+        print()#added for unit test assignment
         if self.current_page > 0:
             self.current_page -= 1
         else:
@@ -206,6 +232,9 @@ class GameSlot:
         #     self.control.try_delete_game(self.game_name)
 
         if self.mouse_over():
+            print("loadgame.py, Class=GameSlot")#added for unit test assignment
+            print("UNITTEST-Gameslot clicked. Loading game: " + str(self.game_name) )#added for unit test assignment
+            print()#added for unit test assignment
             self.control.select_game(self.game_name)
 
     def mouse_over(self):

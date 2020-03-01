@@ -69,17 +69,29 @@ class Menu:
             self.draw()
 
     def get_state(self):
+        print("menu.py, Class=Menu")#added for unit test assignment
+        print("UNITTEST- Getting state: \"" + str(self.state))#added for unit test assignment
+        print()#added for unit test assignment
         return self.state
 
     def handle_events(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                print("menu.py, Class=Menu")#added for unit test assignment
+                print("UNITTEST- Event is pygame.QUIT. Closing game...")#added for unit test assignment
+                print()#added for unit test assignment
                 self.state = "quit"
 
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if self.continue_button.check_clicked():
+                    print("menu.py, Class=Menu")#added for unit test assignment
+                    print("UNITTEST- Continue button clicked. Sate = load_game")#added for unit test assignment
+                    print()#added for unit test assignment
                     self.state = "load_game"
                 elif self.editor_button.check_clicked():
+                    print("menu.py, Class=Menu")#added for unit test assignment
+                    print("UNITTEST- Editor button clicked. State = editor")#added for unit test assignment
+                    print()#added for unit test assignment
                     self.state = "editor"
                 else:
                     self.project_github.check_clicked()
@@ -87,6 +99,9 @@ class Menu:
 
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE or (event.key == pygame.K_F4 and event.mod == pygame.KMOD_ALT):
+                    print("menu.py, Class=Menu")#added for unit test assignment
+                    print("UNITTEST- ESC key or ALT-F4 pressed. State = quit")#added for unit test assignment
+                    print()#added for unit test assignment
                     self.state = "quit"
 
     def draw(self):
@@ -131,6 +146,9 @@ class WebLink:
 
     def check_clicked(self):
         if self.mouse_over():
+            print("menu.py, Class=WebLink")#added for unit test assignment
+            print("UNITTEST- Link to github of creator clicked. Opening web browser")#added for unit test assignment
+            print()#added for unit test assignment
             webbrowser.open(self.href)
             return True
         return False
