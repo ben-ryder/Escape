@@ -14,15 +14,18 @@ class LevelView:
         self.level = level
 
         self.image = {
-            "path": pygame.image.load(paths.tilePath + "path.png"),
-            "wall": pygame.image.load(paths.tilePath + "wall.png"),
-            "spawn": pygame.image.load(paths.tilePath + "spawn-point.png"),
+            "path"      : pygame.image.load(paths.tilePath + "path.png"),
+            "wall"      : pygame.image.load(paths.tilePath + "wall.png"),
+
+            "spawn"     : pygame.image.load(paths.tilePath + "spawn-point.png"),
             "safe-point": pygame.image.load(paths.tilePath + "safe-point.png"),
-            "exit-top": pygame.image.load(paths.tilePath + "exit-closed-top.png"),
+
+            "exit-top"  : pygame.image.load(paths.tilePath + "exit-closed-top.png"),
             "exit-bottom": pygame.image.load(paths.tilePath + "exit-closed-bottom.png"),
-            "exit-left": pygame.image.load(paths.tilePath + "exit-closed-left.png"),
+            "exit-left" : pygame.image.load(paths.tilePath + "exit-closed-left.png"),
             "exit-right": pygame.image.load(paths.tilePath + "exit-closed-right.png"),
-            "key": pygame.image.load(paths.tilePath + "key.png"),
+
+            "key"       : pygame.image.load(paths.tilePath + "key.png"),
 
             "enemy-patrol": pygame.image.load(paths.tilePath + "enemy-patrol.png"),
             "enemy-random": pygame.image.load(paths.tilePath + "enemy-random.png"),
@@ -43,10 +46,19 @@ class LevelView:
         self.draw_keys(display)
         self.draw_enemies(display)
         self.draw_grid(display)  # not like game where draws below walls, should be above all.
+        print()
+        print("Draw map function located in /project/editor/level_view.py has succeeded") # Added for unit testing assignment
+        print(" Unit test drawing map : \"" + str(self.draw_map(display)) + "\"" )
+        print()
 
     def draw_map(self, display):
         x = 0
         y = 0
+##      This function works. It spams this output to the terminal though.
+##        print()
+##        print("Draw map  function located in /project/editor/level_view.py has succeeded") # Added for unit testing assignment
+##        print(" Unit test draw map function : \"" + str(self.level.MAP_SIZE) + "\"" )
+##        print()
         for row in self.level.format:
             for col in row:
                 if col == "0":
@@ -88,6 +100,11 @@ class LevelView:
                 pygame.draw.line(display, constants.COLOURS["dark-gray"],
                                  [row*self.level.TILE_SIZE, 0],
                                  [row*self.level.TILE_SIZE, self.level.DISPLAY_SIZE[1]], 1)
+#                This function works. But it spams the output terminal.
+#                print()
+#                print("Draw grid  function located in /project/editor/level_view.py has succeeded") # Added for unit testing assignment
+#                print(" Unit test draw grid function : \"" + str(self.level.format) + "\"" )
+#                print()
 
     def draw_keys(self, display):
         for key in self.level.keys:
@@ -95,6 +112,11 @@ class LevelView:
             y = key[1] * self.level.TILE_SIZE
             display.blit(pygame.transform.scale(self.image["key"],
                                                 [self.level.TILE_SIZE, self.level.TILE_SIZE]), [x, y])
+#                This function works. But it spams the output terminal.
+#                print()
+#                print("Draw key function located in /project/editor/level_view.py has succeeded") # Added for unit testing assignment
+#                print(" Unit test draw key function : \"" + str(self.level.keys) + "\"" )
+#                print()
 
     def draw_enemies(self, display):
         for enemy in self.level.enemies:
@@ -114,10 +136,20 @@ class LevelView:
             elif enemy["type"] == "es":
                 display.blit(pygame.transform.scale(self.image["enemy-seeker"],
                                                     [self.level.ENEMY_SIZE, self.level.ENEMY_SIZE]), [x, y])
+#                This function works. But it spams the output terminal.
+#                print()
+#                print("Draw enemies function located in /project/editor/level_view.py has succeeded") # Added for unit testing assignment
+#                print(" Unit test draw eneimes function : \"" + str(self.level.enemies) + "\"" )
+#                print()
 
     def draw_enemy_patrols(self, display):
         for enemy in [e for e in self.level.enemies if e["type"] == "ep"]:
             self.draw_patrol(display, enemy)
+#                This function works. But it spams the output terminal.
+#                print()
+#                print("Draw enemy patrol function located in /project/editor/level_view.py has succeeded") # Added for unit testing assignment
+#                print(" Unit test draw enemy patrol function : \"" + str(self.level.keys) + "\"" )
+#                print()
 
     def draw_patrol(self, display, enemy):
         patrol = enemy["patrol"]
@@ -159,4 +191,3 @@ class LevelView:
                            target[1] * self.level.TILE_SIZE + self.level.TILE_SIZE/2]
 
             pygame.draw.line(display, (255, 255, 255), start_point, target_point, 2)
-

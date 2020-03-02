@@ -3,8 +3,9 @@ import os
 
 import paths
 
-import project.data as data
+import data
 
+import project.data as data
 
 class LevelModel:
     def __init__(self, filename=None):
@@ -47,6 +48,9 @@ class LevelModel:
         self.format = levelData["map-format"]
         self.keys = levelData["keys"]
         self.enemies = levelData["enemies"]
+        print()
+        print("load function located in /project/editor/level.py has succeeded") # Added for unit testing assignment
+        print(" Unit test state : \"" + str(filename) + "\"" )
 
     def set_sizes(self):
         self.DISPLAY_SIZE = [self.TILE_SIZE * self.MAP_SIZE[0], self.TILE_SIZE * self.MAP_SIZE[1]]
@@ -57,6 +61,10 @@ class LevelModel:
 
         self.ENEMY_SIZE = round(0.5 * self.TILE_SIZE)
         self.ENEMY_PADDING = self.TILE_SIZE - self.ENEMY_SIZE
+        print()
+        print("set sizes function located in /project/editor/level.py has succeeded") # Added for unit testing assignment
+        print(" Unit test setting size state : \"" + str(self.TILE_SIZE * 6) + "\"" )
+        print()
 
     def set_blank(self):
         # Format Setup (setting up blank 2d-array based on map size)
@@ -84,6 +92,10 @@ class LevelModel:
 
         self.enemies = []
         self.keys = []
+        print()
+        print("set blank function located in /project/editor/level.py has succeeded") # Added for unit testing assignment
+        print(" Unit test setting blank state : \"" + str(self.MAP_SIZE) + "\"" )
+        print()
 
     def save(self, filename):
         level = {
@@ -97,16 +109,28 @@ class LevelModel:
         try:
             data.save(level, filename)
             return True
+            print()
+            print("save function located in /project/editor/level.py has succeeded") # Added for unit testing assignment
+            print(" Unit test setting save state : \"" + str(self.filename) + "\"" )
+            print()
         except IsADirectoryError:
             return False
 
     def change_tile_size(self, new):
         self.TILE_SIZE = new
         self.set_sizes()
+        print()
+        print("change tile size function located in /project/editor/level.py has succeeded") # Added for unit testing assignment
+        print(" Unit test setting tile size : \"" + str(self.TILE_SIZE) + "\"" )
+        print()
 
     def change_map_size(self, new):
         self.MAP_SIZE = new
         self.set_sizes()
+        print()
+        print("change map size function located in /project/editor/level.py has succeeded") # Added for unit testing assignment
+        print(" Unit test setting map size : \"" + str(self.MAP_SIZE) + "\"" )
+        print()
 
     def change_tile(self, position, content):
         self.format[position[0]][position[1]] = content
@@ -145,12 +169,17 @@ class LevelModel:
     def add_key(self, position):
         if position not in self.keys:
             self.keys.append(position)
+            print()
+            print("add key function located in /project/editor/level.py has succeeded") # Added for unit testing assignment
+            print(" Unit test placing key state : \"" + str(self.keys.append(position)) + "\"" )
+            print()
 
     def add_random_enemy(self, position):
         if self.get_enemy(position) is None:
             self.enemies.append({
                 "type": "er",
                 "spawn": position,
+
             })
 
     def add_seeker_enemy(self, position):
